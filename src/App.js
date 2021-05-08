@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import Dog from "./Dog"
+import axios from 'axios'
+import NumberOfDogs from './NumberOfDogs'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      numberOfDogs: 1
+    }
+  }
+  handleChange = (e) =>{
+    this.setState({this.state.numberOfDogs:e.value})
+  }
+  render(){
+    const { numberOfDogs } = this.state;
+  
+    return (
+      <>
+        <NumberOfDogs handleChange={this.handleChange}dogCount={numberOfDogs}/>
+        <Dog dogCount={numberOfDogs}/>
+      </>
+    );
+  }
+  
 }
 
-export default App;
+export default App
